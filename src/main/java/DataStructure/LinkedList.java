@@ -58,7 +58,7 @@ public class LinkedList {
         }
     }
 
-    public void addNode(int position, Node node) {
+    public boolean addNode(int position, Node node) {
         if (position == 1) {
             node.next = head;
             head = node;
@@ -73,8 +73,17 @@ public class LinkedList {
         }
 
         this.nodeCount += 1;
+        return true;
     }
 
+    public boolean deleteAt(int position) {
+        if (nodeCount <= 0) throw new RuntimeException();
+
+        if (position == 1) { // 삭제하려는 노드가 첫번째 노드일때,
+
+        }
+        return true;
+    }
 
     public static class Node {
         private int data;

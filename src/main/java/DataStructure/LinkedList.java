@@ -18,20 +18,24 @@ public class LinkedList {
         LinkedList linkedList = new LinkedList();
         linkedList.addNode(1, new Node(1));
         linkedList.printAllNodes();
-        out.println();
-        linkedList.addNode(2, new Node(4));
+
+        linkedList.deleteAt(1);
         linkedList.printAllNodes();
-        out.println();
-        linkedList.addNode(1, new Node(1));
+
+        linkedList.addNode(1, new Node(4));
         linkedList.printAllNodes();
-        out.println();
-        linkedList.addNode(3, new Node(3));
-        linkedList.printAllNodes();
-        out.println();
+
         linkedList.addNode(1, new Node(1));
         linkedList.printAllNodes();
 
+        linkedList.addNode(2, new Node(3));
+        linkedList.printAllNodes();
 
+        linkedList.addNode(1, new Node(1));
+        linkedList.printAllNodes();
+
+        linkedList.deleteAt(4);
+        linkedList.printAllNodes();
     }
 
 
@@ -56,9 +60,11 @@ public class LinkedList {
             out.print(curr.data);
             curr = curr.next;
         }
+        out.println();
     }
 
     public boolean addNode(int position, Node node) {
+        out.println("addNode at position : " + position + ", value : " + node.data);
         if (position == 1) {
             node.next = head;
             head = node;
@@ -77,11 +83,17 @@ public class LinkedList {
     }
 
     public boolean deleteAt(int position) {
+        out.println("deleteNode at position : " + position);
         if (nodeCount <= 0) throw new RuntimeException();
 
         if (position == 1) { // 삭제하려는 노드가 첫번째 노드일때,
-
+            this.head = head.next;
+        } else {
+            Node curr = getAt(position);
+            Node prev = getAt(position - 1);
+            prev.next = curr.next;
         }
+        nodeCount -= 1;
         return true;
     }
 

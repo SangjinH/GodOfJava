@@ -1,6 +1,9 @@
 package DataStructure;
 
+import java.util.Collections;
+
 import static java.lang.System.*;
+import static java.util.Arrays.copyOf;
 
 public class LinkedList {
 
@@ -35,6 +38,12 @@ public class LinkedList {
         linkedList.printAllNodes();
 
         linkedList.deleteAt(4);
+        linkedList.printAllNodes();
+
+        LinkedList addLinkedList = new LinkedList();
+        addLinkedList.concat(linkedList);
+
+        linkedList.concat(addLinkedList);
         linkedList.printAllNodes();
     }
 
@@ -97,6 +106,14 @@ public class LinkedList {
         return true;
     }
 
+    public boolean concat(LinkedList addLinkedList) {
+        out.println("concat List : " + addLinkedList);
+        int addLinkedListCount = addLinkedList.nodeCount;
+        for (int i = 0; i < addLinkedListCount; i++) {
+            this.addNode(nodeCount + 1, new Node(addLinkedList.getAt(i + 1).data));
+        }
+        return true;
+    }
     public static class Node {
         private int data;
         private Node next;
